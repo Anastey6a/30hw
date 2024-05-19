@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Голосування зі смайликами</title>
+    <style>
+        .emoji-container {
+            text-align: center;
+            font-size: 2rem;
+        }
+        .emoji {
+            cursor: pointer;
+            margin: 0 10px;
+        }
+        .votes {
+            font-size: 1rem;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="emoji-voting" class="emoji-container">
+        <div class="emoji" data-id="0">😀</div>
+        <div class="emoji" data-id="1">😂</div>
+        <div class="emoji" data-id="2">😍</div>
+        <div class="emoji" data-id="3">😢</div>
+        <div class="emoji" data-id="4">😡</div>
+    </div>
+    <div id="votes-container" class="emoji-container votes">
+        <div class="votes" data-id="0">0</div>
+        <div class="votes" data-id="1">0</div>
+        <div class="votes" data-id="2">0</div>
+        <div class="votes" data-id="3">0</div>
+        <div class="votes" data-id="4">0</div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const emojis = document.querySelectorAll('.emoji');
+            const votes = document.querySelectorAll('.votes');
+
+            emojis.forEach(emoji => {
+                emoji.addEventListener('click', () => {
+                    const id = emoji.getAttribute('data-id');
+                    const vote = votes[id];
+                    vote.textContent = parseInt(vote.textContent) + 1;
+                });
+            });
+        });
+    </script>
+</body>
+</html>
